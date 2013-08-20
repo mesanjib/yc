@@ -7,12 +7,22 @@ package com.rpst.yc.server.ui;
 import com.rpst.yc.database.DatatypeUserRegistration;
 import com.rpst.yc.database.JDBCConnection;
 import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
+import java.awt.FileDialog;
+import java.awt.Image;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -68,7 +78,7 @@ public class Registration extends javax.swing.JFrame {
         jLabel1.setText("Full Name");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, 20));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tunga", 2, 14)); // NOI18N
         jLabel2.setText("Address");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, 20));
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 91, -1, -1));
@@ -137,6 +147,11 @@ public class Registration extends javax.swing.JFrame {
         getContentPane().add(pnl_image, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
 
         btn_chooseimage.setText("Choose Image");
+        btn_chooseimage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_chooseimageActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn_chooseimage, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, -1, -1));
 
         btn_cancel.setText("Cancel");
@@ -186,6 +201,20 @@ private void Clear(){
         Clear();
         this.setVisible(false);
     }//GEN-LAST:event_btn_cancelActionPerformed
+
+    private void btn_chooseimageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_chooseimageActionPerformed
+        try {
+            FileDialog file=new FileDialog(this);
+            file.setVisible(true);
+            
+            System.out.println(file.getFile());
+            BufferedImage image=ImageIO.read(new File(file.getFile()));
+            JLabel lbl_img=new JLabel(new ImageIcon(image));
+            pnl_image.add(lbl_img);
+        } catch (IOException ex) {
+            Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_chooseimageActionPerformed
 
     /**
      * @param args the command line arguments
