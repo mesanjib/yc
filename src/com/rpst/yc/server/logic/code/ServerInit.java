@@ -16,7 +16,12 @@ public class ServerInit {
 	public void play(){
 		 // Assign a security manager, in the event that dynamic
 	       // classes are loaded
-               String rmiserver="rmi://192.168.1.5/";
+            if(System.getSecurityManager()==null)
+                System.setSecurityManager(new SecurityManager());
+            String ipadd="192.168.2.10";
+               System.setProperty("java.rmi.server.hostname", ipadd);
+
+               String rmiserver="rmi://"+ipadd+"/";
 	       RServer server=new Server();
 	       try {
                     RServer stub=(RServer)UnicastRemoteObject.exportObject(server,0);

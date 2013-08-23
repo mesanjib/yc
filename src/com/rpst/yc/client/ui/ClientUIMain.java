@@ -41,10 +41,10 @@ public class ClientUIMain extends javax.swing.JFrame {
         lbl_name = new javax.swing.JLabel();
         lbl_pricing = new javax.swing.JLabel();
         lbl_payment = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btn_loggoff = new javax.swing.JButton();
+        btn_payment = new javax.swing.JButton();
+        btn_chat = new javax.swing.JButton();
+        btn_password = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -108,26 +108,36 @@ public class ClientUIMain extends javax.swing.JFrame {
         lbl_payment.setText("-- Payment --");
         getContentPane().add(lbl_payment, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("Log OFF");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_loggoff.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_loggoff.setText("Log OFF");
+        btn_loggoff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_loggoffActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 90, 30));
+        getContentPane().add(btn_loggoff, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 90, 30));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setText("Payment");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 90, 30));
+        btn_payment.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_payment.setText("Payment");
+        getContentPane().add(btn_payment, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 90, 30));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton3.setText("Order");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 90, 30));
+        btn_chat.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_chat.setText("Chat");
+        btn_chat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_chatActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_chat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 90, 30));
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton4.setText("Password");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, 30));
+        btn_password.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_password.setText("Password");
+        btn_password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_passwordActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, 30));
 
         jSeparator1.setPreferredSize(new java.awt.Dimension(0, 5));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 202, 350, 10));
@@ -199,18 +209,25 @@ public class ClientUIMain extends javax.swing.JFrame {
 
   public static fullpage f = new fullpage();
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //this.setVisible(false);
-        
+    private void btn_loggoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loggoffActionPerformed
         this.dispose();
-       Login l = new Login();
+        Login l = new Login();
         
         f.setVisible(true);
         l.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         l.setSize(390,330);
         l.setVisible(true);
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_loggoffActionPerformed
+
+    private void btn_chatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_chatActionPerformed
+        Frm_Chat chat = new Frm_Chat();
+        chat.setVisible(true);
+    }//GEN-LAST:event_btn_chatActionPerformed
+
+    private void btn_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_passwordActionPerformed
+        Frm_changePassword change = new Frm_changePassword();
+        change.setVisible(true);
+    }//GEN-LAST:event_btn_passwordActionPerformed
 public static int start = 0;
     /**
      * @param args the command line arguments
@@ -255,23 +272,19 @@ public static int start = 0;
                         t1.setTime(t1.getTime());
                     }
                     else{
-                  t1.setTime(t1.getTime() + 1000);}
+                    t1.setTime(t1.getTime() + 1000);}
                     
-                 m.lbl_time.setText(String.valueOf(t1));
-                 m.lbl_time_amt.setText("10.00 ");
-                  //jPanel2.setVisible(true);
+                    m.lbl_time.setText(String.valueOf(t1));
+                    m.lbl_time_amt.setText("10.00 ");
                 }
               }, 0,1000);
               m.setVisible(true);
-                
-           // }
-        //});
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btn_chat;
+    private javax.swing.JButton btn_loggoff;
+    private javax.swing.JButton btn_password;
+    private javax.swing.JButton btn_payment;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel6;

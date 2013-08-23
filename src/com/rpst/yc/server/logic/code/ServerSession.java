@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
-import com.rpst.yc.client.logic.code.Client;
 import com.rpst.yc.commons.def.RClient;
 import com.rpst.yc.commons.dt.code.User;
 
@@ -29,7 +28,7 @@ public class ServerSession{
 		this.session_id = session_id;
 	}
 	public boolean terminate;
-	public ServerSession(Client cli,User ur) {
+	public ServerSession(RClient cli,User ur) {
 		this.clientt=cli;
 		this.userr=ur;
 		this.terminate=false;

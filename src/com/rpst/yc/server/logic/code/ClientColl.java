@@ -2,11 +2,9 @@ package com.rpst.yc.server.logic.code;
 
 import java.util.Dictionary;
 import java.util.Enumeration;
-import java.util.Hashtable;
-
-import com.rpst.yc.client.logic.code.Client;
 import com.rpst.yc.commons.def.RClient;
 import com.rpst.yc.commons.dt.def.IClientColl;
+import java.util.Hashtable;
 
 public class ClientColl {
 	private static int totalConnected;
@@ -35,24 +33,23 @@ public class ClientColl {
 	}
 	public boolean addClient(RClient client){
 		IClientColl ic=new IClientColl();
-		ic.setClient((Client)client);
+		ic.setClient(client);
 		cl_ids++;
 		ic.setID(cl_ids);
 		ic.setAvailable(true);
 		clients.put(new Integer(cl_ids), ic);
 		totalAvailable++;
 		totalConnected++;
-		
 		return true;
 	}
-	public boolean removeClient(Client cl){
+	public boolean removeClient(RClient cl){
 		return this.remClient(this.getKeyFromClient(cl));
 	}
 	public boolean remClient(int id){
 		clients.remove(new Integer(id));
 		return true;
 	}
-	public Client getFreeClient(){
+	public RClient getFreeClient(){
 		int fkk=this.getFreeClientKey();
 		if(fkk!=-1){
 			return this.getClientFromKey(fkk);
@@ -77,11 +74,11 @@ public class ClientColl {
 		}
 		return false;
 	}
-	public Client getClientFromKey(int key){
+	public RClient getClientFromKey(int key){
 		IClientColl val=clients.get(new Integer(key));
 		return val.getClient();
 	}
-	public int getKeyFromClient(Client cl){
+	public int getKeyFromClient(RClient cl){
 		Enumeration<Integer> enumKey = clients.keys();
 		while(enumKey.hasMoreElements()) {
 		    Integer key = enumKey.nextElement();
@@ -92,7 +89,7 @@ public class ClientColl {
 		}
 		return -1;
 	}
-	public boolean consumereleaseClient(Client cl,boolean release){
+	public boolean consumereleaseClient(RClient cl,boolean release){
 		Integer key=this.getKeyFromClient(cl);
 		if(key!=-1){
 			IClientColl val=clients.get(key);
@@ -101,10 +98,10 @@ public class ClientColl {
 		}
 		return false;
 	}
-	public boolean releaseClient(Client cl){
+	public boolean releaseClient(RClient cl){
 		return this.consumereleaseClient(cl, true);
 	}
-	public boolean consumeClient(Client cl){
+	public boolean consumeClient(RClient cl){
 		return this.consumereleaseClient(cl, false);
 	}
 }
